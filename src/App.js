@@ -5,6 +5,7 @@ import SignIn from './components/SignIn/SignIn';
 import UserInfo from './components/UserInfo/UserInfo';
 import Tasks from './components/Tasks/Tasks';
 import TaskInput from './components/TaskInput/TaskInput';
+import Welcome from './components/Welcome/Welcome';
 import './App.css';
 
 
@@ -12,7 +13,7 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      route: 'signin',
+      route: 'welcome',
       isSignedIn: false,
       areTasks: true,
       user: {
@@ -78,12 +79,16 @@ class App extends Component {
         <div>
           <UserInfo name={user.name} areTasks={areTasks}/>
           <TaskInput loadData={this.loadData} userid={user.id}/>
-          <Tasks tasks={tasks}></Tasks>
+          <Tasks tasks={tasks} userid={user.id} loadData={this.loadData}></Tasks>
         </div>
         : (
-          route === 'signin' ?
-          <SignIn loadUser={this.loadUser} onRouteChange = {this.onRouteChange}/>
-          : <Register loadUser={this.loadUser} onRouteChange = {this.onRouteChange}/>
+          route === 'welcome' ?
+          <Welcome onRouteChange = {this.onRouteChange}/>
+          : (
+            route === 'signin' ?
+            <SignIn loadUser={this.loadUser} onRouteChange = {this.onRouteChange}/>
+           : <Register loadUser={this.loadUser} onRouteChange = {this.onRouteChange}/>
+          )
         )}
       </div>
     );

@@ -41,16 +41,15 @@ class SignIn extends React.Component {
     const { onRouteChange } = this.props;
     return (
         <div>
-        <h3>Sign in to managing your tasks!</h3>
         <article className="br3 ba dark-gray b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
-            <main className="pa4 black-80">
+            <main className="pa4 bg-white-30 black-90">
                 <div className="measure">
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="f3 fw6 ph0 mh0">Sign In</legend>
                         <div className="mt3">
                             <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
                             <input 
-                                className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+                                className="pa2 input-reset ba bg-transparent w-100" 
                                 type="email" 
                                 name="email-address"  
                                 id="email-address"
@@ -60,7 +59,7 @@ class SignIn extends React.Component {
                         <div className="mv3">
                             <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
                             <input 
-                                className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+                                className="b pa2 input-reset ba bg-transparent w-100" 
                                 type="password" 
                                 name="password"  
                                 id="password"
@@ -77,7 +76,7 @@ class SignIn extends React.Component {
                     </div>
                     <div className="lh-copy mt3">
                         <p onClick={() => onRouteChange('register')}
-                        className="f6 link dim black db"
+                        className="f5 link dim black db"
                         >Register</p>    
                     </div>
                 </div>

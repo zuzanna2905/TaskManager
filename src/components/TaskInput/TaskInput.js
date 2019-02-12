@@ -13,12 +13,12 @@ class TaskInput extends React.Component {
 }
 
 onSubmitTask = () => {
-    // fetch('http://localhost:3001/newtask', {
+    // fetch('http://localhost:3001/tasks/:id', {
     //     method: 'post',
     //     headers: {'Content-Type' : 'application/json'},
     //     body: JSON.stringify({
     //         userid: this.props.userid
-    //         task: this.state.input
+    //         task: this.state.input,
     //     })
     // })
     // .then(response => response.json())
@@ -33,8 +33,8 @@ onSubmitTask = () => {
     return (
       <div>
           <div className="measure flex center">
-              <input id="task" className="ma2 input-reset ba bg-light-silver b--black-20 br4 pa2 db w-100" placeholder='Task...' type="text" aria-describedby="task-desc"/>
-              <button className="white bg-mid-gray br4 mh2 mv1 f5 ph2">Add</button>
+              <input id="task" className="ma2 bg-white-60 input-reset ba b--black-20 br4 pa2 db w-100" placeholder='Task...' type="text" aria-describedby="task-desc"/>
+              <button onClick={this.onSubmitTask} className="black br4 bg-white-70 mh2 mv1 f5 ph2">Add</button>
           </div>
       </div>
     )
