@@ -1,5 +1,6 @@
 import React from 'react'
 import ListItem from '../ListItem/ListItem';
+const url = 'http://localhost:3001/tasks';
 
 class Tasks extends React.Component {
 
@@ -7,24 +8,26 @@ class Tasks extends React.Component {
     if(this.props.tasks){
       return this.props.tasks.map((task) => 
       <ListItem key={task.id}
-              value={task.name} deleteItem={this.deleteItem}/>);
+              value={task.task} id={task.id} handleDelete={this.handleDelete} handleDetails = {this.handleDetails}/>);
     }
   }
 
   TaskList = () => this.listItems();
 
-  deleteItem = (taskid) => {
-    // fetch('http://localhost:3001/tasks/:id', {
-    //     method: 'delete',
-    //     headers: {'Content-Type' : 'application/json'},
-    //     body: JSON.stringify({
-    //          userid: this.state.user.id,
-    //          id: taskid
-    //     })
-    // })
-    // .then(response => response.json())
-    // .then(task => {
-    // })
+  handleDetails = () => {
+
+  }
+
+  handleDelete = (taskid) => {
+    let deleteUrl = url + '/' + taskid;
+    fetch(deleteUrl, {
+      method: 'delete',
+      headers: {'Content-Type' : 'application/json'},
+    })
+    .then(response => response.json())
+    .then(
+      this.props.loadData()
+    )
   }
 
   render() {

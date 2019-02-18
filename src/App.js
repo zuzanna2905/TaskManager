@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import queryString from 'query-string';
 import Navigation from './components/Navigation/Navigation';
 import Register from './components/Register/Register';
 import SignIn from './components/SignIn/SignIn';
@@ -7,48 +8,38 @@ import Tasks from './components/Tasks/Tasks';
 import TaskInput from './components/TaskInput/TaskInput';
 import Welcome from './components/Welcome/Welcome';
 import './App.css';
+const url = 'http://localhost:3001/tasks';
 
+const initial = 
+{
+  route: 'welcome',
+  isSignedIn: false,
+  areTasks: true,
+  user: {
+    id: '',
+    name: ''
+  },
+  tasks: []
+}
 
 class App extends Component {
   constructor(){
     super();
-    this.state = {
-      route: 'welcome',
-      isSignedIn: false,
-      areTasks: true,
-      user: {
-        id: '',
-        name: ''
-      },
-      tasks:  [{
-        id: 1,
-        name: 'make a dinner'
-      },
-      {
-        id: 2,
-        name: 'take out the trash'
-      },
-      {
-        id: 3,
-        name: 'wash the dishes'
-      }]
-    }
+    this.state = initial;
   }
 
   loadData = () => {
-    // fetch('http://localhost:3001/tasks', {
-    //     method: 'post',
-    //     headers: {'Content-Type' : 'application/json'},
-    //     body: JSON.stringify({
-    //         id: this.state.user.id
-    //     })
-    // })
-    // .then(response => response.json())
-    // .then(tasks => {
-    //     if(tasks){
-    //       this.setState({ tasks:tasks })
-    //     }
-    // })
+    let fetchUrl = url + '?' + queryString.stringify({userid: this.state.user.id});
+    fetch(fetchUrl, {
+        method: 'get',
+        headers: {'Content-Type' : 'application/json'}
+    })
+    .then(response => response.json())
+    .then(tasks => {
+        if(tasks){
+          this.setState({ tasks:tasks })
+        }
+    })
   }
 
   loadUser = (user) => {
@@ -71,7 +62,7 @@ class App extends Component {
   }
 
   render() {
-    const {isSignedIn, route, user, tasks, areTasks,} = this.state;
+    const {isSignedIn, route, user, tasks, areTasks} = this.state;
     return (
       <div className="App">
         <Navigation isSignedIn={isSignedIn} onRouteChange = {this.onRouteChange}/>  

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Welcome = (props) => {
+const Welcome = () => {
   return (
-    <div>
-      <h1 className="black">Hi! Sign in to managing your task</h1>
-      <h2>No account?<span onClick={() => props.onRouteChange('register')}> Create one!</span></h2>
+    <div className="bg-white-40 pa2 br2 mh5-l mh3">
+      <p className='f2-l f3-m f4-s fw5'>Welcome in Patagonia Task Manager</p>
+      <p className='f3-l f4-m f5-s fw4'>Add tasks to do and delete completed tasks</p>
     </div>
   )
 }
