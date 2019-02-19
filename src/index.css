@@ -6,7 +6,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('./background.JPG');
+  /*background-image: url('./background.JPG');*/
+  background: #CE763A;
+  background: linear-gradient(to bottom, #CE763A 0%, #A46714 50%, #C57E2B 100%);
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;

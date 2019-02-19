@@ -10,36 +10,70 @@ import Welcome from './components/Welcome/Welcome';
 import './App.css';
 const url = 'http://localhost:3001/tasks';
 
-const initial = 
-{
-  route: 'welcome',
-  isSignedIn: false,
-  areTasks: true,
-  user: {
-    id: '',
-    name: ''
-  },
-  tasks: []
-}
-
 class App extends Component {
   constructor(){
     super();
-    this.state = initial;
+    this.state = this.getInitialState();
+  }
+
+  getInitialState = () => {
+    const initial = 
+    {
+      route: 'welcome',
+      isSignedIn: false,
+      areTasks: true,
+      user: {
+        id: '',
+        name: ''
+      },
+      tasks: [],
+      categories: []
+    }
+    return initial;
+  } 
+
+  reset = () => {
+    this.setState(this.getInitialState());
   }
 
   loadData = () => {
-    let fetchUrl = url + '?' + queryString.stringify({userid: this.state.user.id});
-    fetch(fetchUrl, {
+    fetch(url + '?' + queryString.stringify({userid: this.state.user.id}), {
         method: 'get',
         headers: {'Content-Type' : 'application/json'}
     })
     .then(response => response.json())
     .then(tasks => {
-        if(tasks){
+        if(tasks[0]){
           this.setState({ tasks:tasks })
+          //this.setCategories()
         }
     })
+  }
+
+  loadCategories = () => {
+    fetch('http://localhost:3001/categories', {
+      method: 'get',
+      headers: {'Content-Type' : 'application/json'}
+    })
+    .then(response => response.json())
+    .then(categories => {
+        if(categories[0]){
+          this.setState({ categories:categories })
+        }
+    })
+  }
+
+  setCategories = () => {
+    try{
+    let categoryname = [];
+    categoryname = this.state.tasks.forEach((task) => {
+      return this.state.categories[task.category].name})
+      console.log(categoryname)
+    this.setState({tasks : { categoryname : categoryname}})
+    console.log(this.state.tasks)
+    }catch(e){
+      console.log(e)
+    }
   }
 
   loadUser = (user) => {
@@ -48,28 +82,29 @@ class App extends Component {
       name: user.name
     }})
     if(this.state.user){
+      this.loadCategories();
       this.loadData();
     }
   }
 
   onRouteChange = (route) => {
+    this.setState({ route: route});
     if( route === 'signout'){
-      this.setState({isSignedIn: false})
+      this.setState(this.reset())
     } else if (route === 'home') {
       this.setState({isSignedIn: true})
     }
-    this.setState({ route: route});
   }
 
   render() {
-    const {isSignedIn, route, user, tasks, areTasks} = this.state;
+    const {isSignedIn, route, user, tasks, areTasks, categories} = this.state;
     return (
       <div className="App">
         <Navigation isSignedIn={isSignedIn} onRouteChange = {this.onRouteChange}/>  
         { route === 'home' ? 
         <div>
           <UserInfo name={user.name} areTasks={areTasks}/>
-          <TaskInput loadData={this.loadData} userid={user.id}/>
+          <TaskInput loadData={this.loadData} userid={user.id} categories={categories}/>
           <Tasks tasks={tasks} userid={user.id} loadData={this.loadData}></Tasks>
         </div>
         : (

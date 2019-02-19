@@ -1,15 +1,14 @@
 import React from 'react';
-const itemDesign = 'flex center ma3 f5 b--black-20 justify-between bg-white-60 ba pv1 ph1 br4 shadow-5 w-90 w-60-m w-40-l';
-const buttonDesign = 'black br4 mh2 mv1 bg-white-70';
-const textDesign = 'mh2';
+const itemDesign = 'flex center f6 b--black-20 bg-white-60 ba br4 w-80';
 
 const ListItem = (props) => {
   return (
-    <li>
+    <li className='flex'>
       <div className={itemDesign}>
-          <p className={textDesign}>{props.value}</p>
-          <button className={buttonDesign} onClick={() => props.handleDelete(props.id)}>Done</button>
-        //  <button className={buttonDesign} onClick={() => props.handleDetails(props.id)} >Details</button>
+        <p className='w-40'>{props.value}</p>
+        <p className='w-20'>Category: {props.category}</p>
+        <p className='w-20'>Priority: {props.priority}</p>
+        <button className='w-20 br4 bg-black-20' onClick={() => props.handleDelete(props.id)}>Done</button>
       </div>
     </li>
   )
