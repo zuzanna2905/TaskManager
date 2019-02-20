@@ -21,7 +21,7 @@ class App extends Component {
     {
       route: 'welcome',
       isSignedIn: false,
-      areTasks: true,
+      areTasks: false,
       user: {
         id: '',
         name: ''
@@ -44,36 +44,11 @@ class App extends Component {
     .then(response => response.json())
     .then(tasks => {
         if(tasks[0]){
-          this.setState({ tasks:tasks })
-          //this.setCategories()
+          this.setState({ tasks:tasks, areTasks: true })
+        } else {
+          this.setState({ areTasks: false })
         }
     })
-  }
-
-  loadCategories = () => {
-    fetch('http://localhost:3001/categories', {
-      method: 'get',
-      headers: {'Content-Type' : 'application/json'}
-    })
-    .then(response => response.json())
-    .then(categories => {
-        if(categories[0]){
-          this.setState({ categories:categories })
-        }
-    })
-  }
-
-  setCategories = () => {
-    try{
-    let categoryname = [];
-    categoryname = this.state.tasks.forEach((task) => {
-      return this.state.categories[task.category].name})
-      console.log(categoryname)
-    this.setState({tasks : { categoryname : categoryname}})
-    console.log(this.state.tasks)
-    }catch(e){
-      console.log(e)
-    }
   }
 
   loadUser = (user) => {
@@ -82,7 +57,6 @@ class App extends Component {
       name: user.name
     }})
     if(this.state.user){
-      this.loadCategories();
       this.loadData();
     }
   }

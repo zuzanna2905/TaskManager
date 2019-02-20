@@ -1,8 +1,5 @@
 1/ edycja
 2/ wyswietlanie szczegołów
---3/ dodawnie szczegołów 
-4/ tło ulepszone?
-5/ przewijanie listy (max jedna wysokosc ekranu)
 6/ wrzucic na git
 7/ wrzucic na heroku
 8/ odswiezanie i asynchronicznosc

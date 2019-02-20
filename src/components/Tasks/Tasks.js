@@ -1,20 +1,17 @@
 import React from 'react'
 import ListItem from '../ListItem/ListItem';
+import './Tasks.css'
 const url = 'http://localhost:3001/tasks';
 
 class Tasks extends React.Component {
   listItems = () => {
     if(this.props.tasks){
-      return this.props.tasks.map((task) => 
+      return this.props.tasks.reverse().map((task) => 
       <ListItem 
         key={task.id}
         value={task.task} 
         id={task.id}
-        category={task.category}
-        priority={task.priority}
-        handleDelete={this.handleDelete} 
-        handleDetails = {this.handleDetails}
-        handleEdit = {this.handleEdit}     
+        handleDelete={this.handleDelete}  
       />);
     }
   }
@@ -35,8 +32,8 @@ class Tasks extends React.Component {
 
   render() {
     return (
-      <div>
-        <ul className="list">
+      <div className='mv4'>
+        <ul className="overflow-y-auto vh-50 list">
           <this.TaskList />
         </ul>
       </div>
