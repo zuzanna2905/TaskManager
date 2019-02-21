@@ -9,8 +9,9 @@ class TaskInput extends React.Component {
     }
   }
 
-  onTaskChange = (event) => {
-    this.setState({input: event.target.value})
+  handleFormChange = (event) => {
+    const {name, value} = event.target; 
+    this.setState({[name]: value})
   }
 
   onSubmitTask = () => {
@@ -24,8 +25,7 @@ class TaskInput extends React.Component {
       })
       .then(response => { 
         response.json();
-        this.setState({input: ''});
-        this.props.loadData();
+        this.setState({input: ''}, () => this.props.loadData());
         })
     }
   }
@@ -42,8 +42,9 @@ class TaskInput extends React.Component {
           <div className="flex center w-80">
               <input 
                 id="task" 
-                onChange={this.onTaskChange} 
+                onChange={this.handleFormChange} 
                 onKeyPress={this.onKeyPress}
+                name='input'
                 value={this.state.input}
                 className="ma2 bg-white-60 input-reset ba b--black-20 br4 pa2 db w-80" 
                 placeholder='Task...' 

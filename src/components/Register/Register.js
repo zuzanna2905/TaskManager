@@ -10,16 +10,9 @@ class Register extends React.Component {
         }
     }
 
-    onNameChange = (event) => {
-        this.setState({name: event.target.value})
-    }
-
-    onEmailChange = (event) => {
-        this.setState({email: event.target.value})
-    }
-
-    onPasswordChange = (event) => {
-        this.setState({password: event.target.value})
+    handleFormChange = (event) => {
+        const {name, value} = event.target; 
+        this.setState({[name]: value})
     }
 
     onSubmitRegister = () => {
@@ -34,7 +27,7 @@ class Register extends React.Component {
         })
         .then(response => response.json())
         .then(user => {
-            if(user.id){
+            if(user[0]){
                 this.props.loadUser(user);
                 this.props.onRouteChange('home');
             }
@@ -56,7 +49,7 @@ class Register extends React.Component {
                             type="text" 
                             name="name"  
                             id="name"
-                            onChange = {this.onNameChange}    
+                            onChange = {this.handleFormChange}    
                         />
                     </div>
                     <div className="mt3">
@@ -64,9 +57,9 @@ class Register extends React.Component {
                         <input 
                             className="pa2 input-reset b--black ba bg-transparent w-100" 
                             type="email" 
-                            name="email-address" 
+                            name="email" 
                             id="email-address"
-                            onChange = {this.onEmailChange}
+                            onChange = {this.handleFormChange}
                         />
                     </div>
                     <div className="mv3">
@@ -76,7 +69,7 @@ class Register extends React.Component {
                             type="password" 
                             name="password"  
                             id="password"
-                            onChange = {this.onPasswordChange}
+                            onChange = {this.handleFormChange}
                         />
                     </div>
                 </fieldset>
