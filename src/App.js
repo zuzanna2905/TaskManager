@@ -5,8 +5,8 @@ import Register from './components/Register/Register';
 import SignIn from './components/SignIn/SignIn';
 import UserInfo from './components/UserInfo/UserInfo';
 import Tasks from './components/Tasks/Tasks';
-import TaskInput from './components/TaskInput/TaskInput';
 import Welcome from './components/Welcome/Welcome';
+import TaskInput from './components/TaskInput/TaskInput';
 import './App.css';
 const url = 'http://localhost:3001/tasks';
 
@@ -26,8 +26,7 @@ class App extends Component {
         id: '',
         name: ''
       },
-      tasks: [],
-      categories: []
+      tasks: []
     }
     return initial;
   } 
@@ -42,13 +41,15 @@ class App extends Component {
         headers: {'Content-Type' : 'application/json'}
     })
     .then(response => response.json())
-    .then(tasks => {
-        if(tasks[0]){
-          this.setState({ tasks:tasks, areTasks: true })
-        } else {
-          this.setState({ areTasks: false })
-        }
-    })
+    .then(tasks=> this.updateData(tasks))
+  }
+
+  updateData = (tasks) => {
+    if(tasks[0]){
+      this.setState({ tasks:tasks, areTasks: true })
+    } else {
+      this.setState({ tasks:[], areTasks: false })
+    }
   }
 
   loadUser = (user) => {
@@ -71,14 +72,14 @@ class App extends Component {
   }
 
   render() {
-    const {isSignedIn, route, user, tasks, areTasks, categories} = this.state;
+    const {isSignedIn, route, user, tasks, areTasks} = this.state;
     return (
       <div className="App">
         <Navigation isSignedIn={isSignedIn} onRouteChange = {this.onRouteChange}/>  
         { route === 'home' ? 
         <div>
           <UserInfo name={user.name} areTasks={areTasks}/>
-          <TaskInput loadData={this.loadData} userid={user.id} categories={categories}/>
+          <TaskInput loadData={this.loadData} userid={user.id}/>
           <Tasks tasks={tasks} userid={user.id} loadData={this.loadData}></Tasks>
         </div>
         : (

@@ -4,6 +4,7 @@ import './Tasks.css'
 const url = 'http://localhost:3001/tasks';
 
 class Tasks extends React.Component {
+
   listItems = () => {
     if(this.props.tasks){
       return this.props.tasks.reverse().map((task) => 
@@ -24,10 +25,10 @@ class Tasks extends React.Component {
       method: 'delete',
       headers: {'Content-Type' : 'application/json'},
     })
-    .then(response => response.json())
-    .then(
+    .then(response => {
+      response.json()
       this.props.loadData()
-    )
+    })
   }
 
   render() {
