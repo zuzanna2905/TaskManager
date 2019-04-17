@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Tasks without crashing with data 1`] = `
+<div
+  className="mv4"
+>
+  <ul
+    className="overflow-y-auto vh-50 list"
+  >
+    <Component />
+  </ul>
+</div>
+`;
+
+exports[`renders Tasks without crashing without data 1`] = `
+<div
+  className="mv4"
+>
+  <ul
+    className="overflow-y-auto vh-50 list"
+  >
+    <Component />
+  </ul>
+</div>
+`;

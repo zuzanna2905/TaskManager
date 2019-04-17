@@ -6,7 +6,7 @@ const ListItem = (props) => {
     <li className='flex'>
       <div className={itemDesign}>
         <p className='w-80 pv1 overflow-x-auto'>{props.value}</p>
-        <button className='w-20 br4 bg-black-20' onClick={() => props.handleDelete(props.id)}>Done</button>
+        <button id='deletetask' className='w-20 br4 bg-black-20' onClick={() => props.handleDelete(props.id)}>Done</button>
       </div>
     </li>
   )

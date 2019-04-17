@@ -4,8 +4,8 @@ class SignIn extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            signInEmail: '',
-            signInPassword: ''
+            email: '',
+            password: ''
         }
     }
 
@@ -19,8 +19,8 @@ class SignIn extends React.Component {
             method: 'post',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({
-                email: this.state.signInEmail,
-                password: this.state.signInPassword
+                email: this.state.email,
+                password: this.state.password
             })
         })
         .then(response => response.json())
@@ -42,12 +42,12 @@ class SignIn extends React.Component {
                     <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
                         <legend className="f3 fw6 ph0 mh0">Sign In</legend>
                         <div className="mt3">
-                            <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                            <label className="db fw6 lh-copy f6" htmlFor="email">Email</label>
                             <input 
                                 className="pa2 input-reset ba bg-transparent w-100" 
                                 type="email" 
-                                name="signInEmail"  
-                                id="email-address"
+                                name="email"  
+                                id="email"
                                 onChange = {this.handleFormChange}
                             />
                         </div>
@@ -56,7 +56,7 @@ class SignIn extends React.Component {
                             <input 
                                 className="b pa2 input-reset ba bg-transparent w-100" 
                                 type="password" 
-                                name="signInPassword"  
+                                name="password"  
                                 id="password"
                                 onChange = {this.handleFormChange}
                             />
@@ -64,6 +64,7 @@ class SignIn extends React.Component {
                     </fieldset>
                     <div className="">
                         <input 
+                        id = "signinsubmit"
                         onClick={this.onSubmitSignIn}
                         className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
                         type="submit" 

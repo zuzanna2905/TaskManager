@@ -14,6 +14,8 @@ class Tasks extends React.Component {
         id={task.id}
         handleDelete={this.handleDelete}  
       />);
+    } else {
+      return {}
     }
   }
 

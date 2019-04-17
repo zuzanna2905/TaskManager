@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders ListItem without crashing 1`] = `
+<li
+  className="flex"
+>
+  <div
+    className="flex center f6 b--black-20 bg-white-60 ba br4 w-90"
+  >
+    <p
+      className="w-80 pv1 overflow-x-auto"
+    >
+      clean room
+    </p>
+    <button
+      className="w-20 br4 bg-black-20"
+      onClick={[Function]}
+    >
+      Done
+    </button>
+  </div>
+</li>
+`;

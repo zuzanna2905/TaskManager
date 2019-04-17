@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders TaskInput without crashing 1`] = `
+<div>
+  <div
+    className="flex center w-80"
+  >
+    <input
+      aria-describedby="task-desc"
+      className="ma2 bg-white-60 input-reset ba b--black-20 br4 pa2 db w-80"
+      id="task"
+      name="input"
+      onChange={[Function]}
+      onKeyPress={[Function]}
+      placeholder="Task..."
+      type="text"
+      value=""
+    />
+    <button
+      className="black br4 bg-white-40 mh2 mv1 f5 ph2 w-20"
+      id="submittask"
+      onClick={[Function]}
+    >
+       Add 
+    </button>
+  </div>
+</div>
+`;

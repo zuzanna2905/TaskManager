@@ -52,7 +52,8 @@ class TaskInput extends React.Component {
                 aria-describedby="task-desc"
               />
               <button 
-                onClick={() => this.onSubmitTask()}
+                id='submittask'
+                onClick={() => this.onSubmitTask}
                 className="black br4 bg-white-40 mh2 mv1 f5 ph2 w-20"
               > Add </button>
           </div>

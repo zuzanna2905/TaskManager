@@ -53,12 +53,12 @@ class Register extends React.Component {
                         />
                     </div>
                     <div className="mt3">
-                        <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
+                        <label className="db fw6 lh-copy f6" htmlFor="email">Email</label>
                         <input 
                             className="pa2 input-reset b--black ba bg-transparent w-100" 
                             type="email" 
                             name="email" 
-                            id="email-address"
+                            id="email"
                             onChange = {this.handleFormChange}
                         />
                     </div>
@@ -75,6 +75,7 @@ class Register extends React.Component {
                 </fieldset>
                 <div className="">
                     <input 
+                    id="registersubmit"
                     onClick={this.onSubmitRegister}
                     className="b ph3 pv2 input-reset black ba b--black bg-transparent grow pointer f6 dib" 
                     type="submit" 

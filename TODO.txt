@@ -1,5 +1,0 @@
-1/ edycja
-2/ wyswietlanie szczegołów
-6/ wrzucic na git
-7/ wrzucic na heroku
-8/ odswiezanie i asynchronicznosc

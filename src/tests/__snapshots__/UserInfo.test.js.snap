@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders UserInfo no task 1`] = `
+<div
+  className="f3 mv1"
+>
+  Hi 
+  Ela
+  ! You have no tasks
+</div>
+`;
+
+exports[`renders UserInfo without crashing 1`] = `
+<div
+  className="f3 mv1"
+>
+  Hi 
+  Ela
+  ! Your tasks
+</div>
+`;
